@@ -81,6 +81,44 @@
             }
         }
     });
+
+    //tambahan
+$(window).scroll(function () {
+  var $this = $(this),
+    st = $this.scrollTop(),
+    navbar = $(".nilsbrown-header"),
+    logo = $(".nilsbrown-header .logo > img");
+
+  // Cek apakah halaman saat ini adalah halaman portofolio-page atau portofolio-page2
+  var isPortfolioPage =
+    window.location.pathname.includes("/portofolio-page") ||
+    window.location.pathname.includes("/portofolio-page2");
+
+  if (st > 150 && !isPortfolioPage) {
+    if (!navbar.hasClass("scrolled")) {
+      navbar.addClass("scrolled");
+      logo.attr("src", "../images/logo-dark2.png");
+    }
+  } else {
+    if (navbar.hasClass("scrolled")) {
+      navbar.removeClass("scrolled sleep");
+      logo.attr("src", "../images/logo-dark2.png");
+    }
+  }
+
+  if (st > 350 && !isPortfolioPage) {
+    if (!navbar.hasClass("awake")) {
+      navbar.addClass("awake");
+    }
+  } else {
+    if (navbar.hasClass("awake")) {
+      navbar.removeClass("awake");
+      navbar.addClass("sleep");
+    }
+  }
+});
+//akhir tambahan
+
     $('.nilsbrown-js-nav-toggle').on('click', function (e) {
         var $this = $(this);
         e.preventDefault();
